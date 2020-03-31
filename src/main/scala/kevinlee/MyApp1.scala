@@ -5,8 +5,8 @@ package kevinlee
  * @since 2020-04-01
  */
 object MyApp1 {
-//  def add(a: Int, b: Int) = if (a == 10) -1 else a + b
-  def add(a: Int, b: Int) = a + b
+  def add(a: Int, b: Int) = if (a == 10) -1 else a + b
+//  def add(a: Int, b: Int) = a + b
 
   def reverse(s: String): String = {
     def reverse(s: List[Char], acc: List[Char]): List[Char] = s match {
@@ -15,6 +15,9 @@ object MyApp1 {
     }
     reverse(s.toList, List.empty).mkString
   }
+
+  def stringIdentity(s: String): String =
+    if (s.contains('h')) "" else s
 
   def substring(s: String, beginIndex: Int): String =
     if (beginIndex < 0 || beginIndex > s.length)

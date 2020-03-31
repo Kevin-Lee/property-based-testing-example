@@ -14,6 +14,7 @@ object MyApp1Spec extends Properties {
 
   override def tests: List[Test] = List(
     property("test add", testAdd),
+    property("test stringIdentity", testStringIdentity),
     property("test reverse", testReverse),
     property("test substring", testSubstring),
     property("round-trip test for Person JSON encoder and decoder", testPersonJson)
@@ -24,6 +25,13 @@ object MyApp1Spec extends Properties {
     b <- Gen.int(Range.linear(1, 20)).log("b")
   } yield {
     MyApp1.add(a, b) ==== a + b
+  }
+
+  def testStringIdentity: Property = for {
+    s <- Gen.string(Gen.alpha, Range.linear(1, 50)).log("s")
+  } yield {
+    println(s"$s")
+    MyApp1.stringIdentity(s) ==== s
   }
 
   def testReverse: Property = for {
