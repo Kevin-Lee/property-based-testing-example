@@ -15,6 +15,8 @@ lazy val hedgehogLibs: Seq[ModuleID] = Seq(
   , "qa.hedgehog" %% "hedgehog-sbt" % hedgehogVersion % Test
 )
 
+lazy val scalacheck = Seq("org.scalacheck" %% "scalacheck" % "1.14.1" % Test)
+
 lazy val libCatsCore: Seq[ModuleID] = Seq("org.typelevel" %% "cats-core" % "2.1.1")
 lazy val libCatsEffect: Seq[ModuleID] = Seq("org.typelevel" %% "cats-effect" % "2.1.2")
 
@@ -41,7 +43,7 @@ lazy val root = (project in file("."))
     , addCompilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1")
     , libraryDependencies :=
       crossVersionProps(
-          hedgehogLibs
+          hedgehogLibs ++ scalacheck
         , SemVer.parseUnsafe(scalaVersion.value)
       ) {
           case x =>
