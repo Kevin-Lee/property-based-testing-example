@@ -8,7 +8,9 @@ object ProjectInfo {
     case "2.10" =>
       Seq.empty
     case _ =>
-      Warts.all
+//      Warts.all
+      // TODO: for now, disabled.
+      Seq.empty
   }
 
 }

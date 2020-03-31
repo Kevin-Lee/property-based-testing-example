@@ -17,11 +17,14 @@ lazy val hedgehogLibs: Seq[ModuleID] = Seq(
 
 lazy val scalacheck = Seq("org.scalacheck" %% "scalacheck" % "1.14.1" % Test)
 
-lazy val libCatsCore: Seq[ModuleID] = Seq("org.typelevel" %% "cats-core" % "2.1.1")
-lazy val libCatsEffect: Seq[ModuleID] = Seq("org.typelevel" %% "cats-effect" % "2.1.2")
+lazy val libCatsCore: ModuleID = "org.typelevel" %% "cats-core" % "2.1.1"
+lazy val libCatsEffect: ModuleID = "org.typelevel" %% "cats-effect" % "2.1.2"
 
-lazy val libCatsCore_2_0_0: Seq[ModuleID] = Seq("org.typelevel" %% "cats-core" % "2.0.0")
-lazy val libCatsEffect_2_0_0: Seq[ModuleID] = Seq("org.typelevel" %% "cats-effect" % "2.0.0")
+lazy val libCatsCore_2_0_0: ModuleID = "org.typelevel" %% "cats-core" % "2.0.0"
+lazy val libCatsEffect_2_0_0: ModuleID = "org.typelevel" %% "cats-effect" % "2.0.0"
+
+lazy val argonaut = "io.argonaut" %% "argonaut" % "6.2.5"
+lazy val argonautCats = "io.argonaut" %% "argonaut-cats" % "6.2.5"
 
 ThisBuild / scalaVersion     := ProjectScalaVersion
 ThisBuild / version          := ProjectVersion
@@ -47,7 +50,7 @@ lazy val root = (project in file("."))
         , SemVer.parseUnsafe(scalaVersion.value)
       ) {
           case x =>
-            libraryDependencies.value ++ libCatsCore ++ libCatsEffect
+            libraryDependencies.value ++ Seq(libCatsCore, libCatsEffect, argonaut, argonautCats)
         }
     /* Ammonite-REPL { */
     , libraryDependencies ++=
